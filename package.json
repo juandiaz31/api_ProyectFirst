@@ -1,0 +1,15 @@
+{
+  "name": "tienda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/juandiaz31/api_ProyectFirst.git",
+  "author": "Juan Diaz <jsdiazg1@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
