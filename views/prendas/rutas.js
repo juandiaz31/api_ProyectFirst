@@ -1,6 +1,6 @@
 import Express from "express";
 import { getBD } from "../../db/db.js";
-import { queryAllPrendas, crearPrenda } from "../../controllers/prendas/controller.js";
+import { queryAllPrendas, crearPrenda, editarPrenda } from "../../controllers/prendas/controller.js";
 
 const rutasPrenda = Express.Router();
 
@@ -24,31 +24,7 @@ rutasPrenda.route("/prendas/nuevo").post((req, res) => {
 });
 
 rutasPrenda.route("/prendas/editar").patch((req, res) => {
-  console.log("alguien esta haciendo un patch");
-  const edicion = req.body;
-  console.log(edicion);
-  const filtroPrenda = { _id: new ObjectId(edicion.id) };
-  delete edicion.id;
-  const operacion = {
-    $set: edicion,
-  };
-  const baseDeDatos = getBD();
-  baseDeDatos
-    .collection("prendas")
-    .findOneAndUpdate(
-      filtroPrenda,
-      operacion,
-      { upsert: true, returnOriginal: true },
-      (err, result) => {
-        if (err) {
-          console.error("error actualizando el producto: ", err);
-          res.sendStatus(500);
-        } else {
-          console.log("actualizado con exito");
-          res.sendStatus(200);
-        }
-      }
-    );
+  editarPrenda(req.body, genercCallback(res));
 });
 
 rutasPrenda.route("/prendas/eliminar").delete((req, res) => {

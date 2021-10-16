@@ -1,4 +1,5 @@
 import { getBD } from "../../db/db.js";
+import { ObjectId } from "mongodb";
 
 const queryAllPrendas = async (callback) => {
   const baseDeDatos = getBD();
@@ -18,6 +19,22 @@ const crearPrenda = async (datosPrenda, callback) => {
     return "error";
   }
 };
-  
 
-export { queryAllPrendas, crearPrenda };
+const editarPrenda = async (edicion, callback) => {
+  const filtroPrenda = { _id: new ObjectId(edicion.id) };
+  delete edicion.id;
+  const operacion = {
+    $set: edicion,
+  };
+  const baseDeDatos = getBD();
+  await baseDeDatos
+    .collection("prendas")
+    .findOneAndUpdate(
+      filtroPrenda,
+      operacion,
+      { upsert: true, returnOriginal: true },
+      callback
+    );
+};
+
+export { queryAllPrendas, crearPrenda, editarPrenda };
