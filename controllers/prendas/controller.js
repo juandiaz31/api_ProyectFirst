@@ -37,4 +37,10 @@ const editarPrenda = async (edicion, callback) => {
     );
 };
 
-export { queryAllPrendas, crearPrenda, editarPrenda };
+const eliminarPrenda = async (id, callback) => {
+  const filtroPrenda = { _id: new ObjectId(id) };
+  const baseDeDatos = getBD();
+  await baseDeDatos.collection("prendas").deleteOne(filtroPrenda, callback);
+};
+
+export { queryAllPrendas, crearPrenda, editarPrenda, eliminarPrenda };
