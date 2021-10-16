@@ -1,6 +1,6 @@
 import Express from "express";
 import {
-  queryAllPrendas,
+  consultarPrendas,
   crearPrenda,
   editarPrenda,
   eliminarPrenda,
@@ -18,7 +18,7 @@ const genercCallback = (res) => (err, result) => {
 
 rutasPrenda.route("/prendas").get((req, res) => {
   console.log("alguien hizo get en la ruta /prendas");
-  queryAllPrendas(genercCallback(res));
+  consultarPrendas(genercCallback(res));
 });
 
 rutasPrenda.route("/prendas/nuevo").post((req, res) => {

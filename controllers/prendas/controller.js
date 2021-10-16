@@ -1,7 +1,8 @@
 import { getBD } from "../../db/db.js";
 import { ObjectId } from "mongodb";
 
-const queryAllPrendas = async (callback) => {
+//queryAllPrendas
+const consultarPrendas = async (callback) => {
   const baseDeDatos = getBD();
   await baseDeDatos.collection("prendas").find().toArray(callback);
 };
@@ -43,4 +44,4 @@ const eliminarPrenda = async (id, callback) => {
   await baseDeDatos.collection("prendas").deleteOne(filtroPrenda, callback);
 };
 
-export { queryAllPrendas, crearPrenda, editarPrenda, eliminarPrenda };
+export { consultarPrendas, crearPrenda, editarPrenda, eliminarPrenda };
