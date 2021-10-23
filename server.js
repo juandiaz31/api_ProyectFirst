@@ -13,6 +13,7 @@ import rutasVenta from "./views/ventas/rutas.js";
 
 
 dotenv.config({ path: "./.env" });
+const port=process.env.PORT || 5000;
 
 const app = Express();
 
@@ -38,8 +39,8 @@ app.use(rutasVenta);
 
 //para conectarse a la base de datos
 const main = () => {
-  return app.listen(process.env.PORT, () => {
-    console.log(`Escuchando el puerto ${process.env.PORT}`);
+  return app.listen(port, () => {
+    console.log(`Escuchando el puerto ${port}`);
   });
 };
 
